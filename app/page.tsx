@@ -2,6 +2,9 @@
 import Link from 'next/link';
 import { client } from '../libs/microcms';
 import Header from '@/components/Header/page';
+import Footer from '@/components/Footer/page';
+import Side from '@/components/Side/page';
+
 
 // ブログ記事の型定義
 type Props = {
@@ -27,21 +30,25 @@ export default async function Home() {
   return (
     <main>
       <Header />
-      <h1 className="text-3xl font-bold text-center">ブログ記事一覧</h1>
-      <ul>
+      <h1 className="text-3xl font-bold text-center text-black mt-5 mr-70">ブログ記事一覧</h1>
+      <ul className='mt-5 ml-10 '>
         {posts.map((post) => (
           <li key={post.id} className='p-2'>
-            <div className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-              <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{post.title}</h5> {/* タイトルを表示 */}
-              <button >
-                <Link href={`/blog/${post.id}`}> {/* 記事へのリンクを生成 */}
-                  <h5 className='text-gray font-bold'>続きを読む</h5>
-                </Link>
-              </button>
-            </div>
+            <Link href={`/blog/${post.id}`}> {/* 記事へのリンクを生成 */}
+              <div className="block max-w-3xl p-6 bg-white 
+              rounded-lg shadow-md hover:bg-gray-100 
+              hover:bg-gray-100 dark:bg-white 
+              dark:border-gray-400 dark:hover:bg-gray-400">
+                <h4 className="mb-2 text-xl font-bold 
+                tracking-tight text-gray-900 
+                dark:text-black">{post.title}
+                </h4> {/* タイトルを表示 */}
+              </div>
+            </Link>
           </li>
         ))}
       </ul>
+      <Footer />
     </main>
   );
 }

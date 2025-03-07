@@ -25,14 +25,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ id: s
   const post = await getBlogPost(id);
 
   // dayjsを使ってpublishedAtをYY.MM.DD形式に変換
-  const formattedDate = dayjs(post.publishedAt).format('YY.MM.DD');
+  const formattedDate = dayjs(post.publishedAt).format('YYYY年MM月DD日');
 
   return (
     <main>
-      <h1>{post.title}</h1> {/* タイトルを表示 */}
-      <div>{formattedDate}</div> {/* 日付を表示 */}
-      <div>カテゴリー：{post.category && post.category.name}</div> {/* カテゴリーを表示 */}
-      <div dangerouslySetInnerHTML={{ __html: post.body }} /> {/* 記事本文を表示 */}
+      <h1 className='text-3xl font-bold text-center mt-15'>{post.title}</h1> {/* タイトルを表示 */}
+      <div className='ml-20 mt-10'>{formattedDate}</div> {/* 日付を表示 */}
+      <div className='text-right mr-[30%]'>カテゴリー：{post.category && post.category.name}</div> {/* カテゴリーを表示 */}
+      <div dangerouslySetInnerHTML={{ __html: post.body }} className='text-left ml-10 mt-10'/> {/* 記事本文を表示 */}
     </main>
   );
 }
